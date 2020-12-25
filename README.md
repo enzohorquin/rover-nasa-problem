@@ -23,7 +23,7 @@ Take into account
 
 ---------------------------------------------------------------------------------------------------
 
-Before Testing you must install dependencies:
+Before run any test you must install dependencies:
 ```bash
 yarn install - npm install 
 ```
