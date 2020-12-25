@@ -1,0 +1,17 @@
+{
+  "name": "rover-nasa-problem",
+  "version": "1.0.0",
+  "description": "Rover Nasa Problem for Housfy",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "author": "Enzo Nicolas Horquin",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
