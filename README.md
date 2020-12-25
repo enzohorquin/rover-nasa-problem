@@ -1,7 +1,7 @@
 
-Challenge: Mars Rover Mission
+#  Challenge: Mars Rover Mission
 
-Your Task
+## Your Task
 You’re part of the team that explores Mars by sending remotely controlled vehicles to the surface
 of the planet. Develop a software that translates the commands sent from earth to instructions
 that are understood by the rover.
@@ -23,21 +23,26 @@ Take into account
 
 ---------------------------------------------------------------------------------------------------
 
-Before Testing you must install dependencies: 
+Before Testing you must install dependencies:
+```bash
 yarn install - npm install 
+```
 
 How to run test: 
+```bash
 yarn install - npm install 
 yarn test - npm test
 yarn test:coverage - npm test:coverage
+```
 
 How to use it (Needs to be Nodejs installed):
+```bash
 yarn start - npm start 
-
+```
 ----------------------------------------------------------------------------------------------------
 
 How to run specific scenarios for the Rover Nasa Problem:
-
+```javascript
 /* Example of how to use.
 Set Up Planet Dimension and obstacles. */
 const planet = new Planet(4, 4);
@@ -61,4 +66,4 @@ const command = 'FFFRF';
 const result = roverHandler.receiveCommands(command);
 console.log(result);
 console.log(`Rover`, rover.getCoordinate());
-
+```
