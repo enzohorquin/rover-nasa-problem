@@ -57,7 +57,7 @@ test('Test For Rover Handler 3', () => {
 
 });
 
-test('Test for getFutureDirection for Left Command', () => {
+test('Test for getNextDirection for Left Command', () => {
 
     const initialCoordinate = new Coordinate(0, 0);
     const initialDirection = DIRECTIONS.SOUTH;
@@ -65,13 +65,13 @@ test('Test for getFutureDirection for Left Command', () => {
 
     const roverHandler = new RoverHandler(rover, planet);
 
-    expect(roverHandler.getFutureDirection(DIRECTIONS.SOUTH, COMMANDS.LEFT)).toEqual(DIRECTIONS.WEST);
-    expect(roverHandler.getFutureDirection(DIRECTIONS.NORTH, COMMANDS.LEFT)).toEqual(DIRECTIONS.WEST);
-    expect(roverHandler.getFutureDirection(DIRECTIONS.WEST, COMMANDS.LEFT)).toEqual(DIRECTIONS.NORTH);
-    expect(roverHandler.getFutureDirection(DIRECTIONS.EAST, COMMANDS.LEFT)).toEqual(DIRECTIONS.SOUTH);
+    expect(roverHandler.getNextDirection(DIRECTIONS.SOUTH, COMMANDS.LEFT)).toEqual(DIRECTIONS.WEST);
+    expect(roverHandler.getNextDirection(DIRECTIONS.NORTH, COMMANDS.LEFT)).toEqual(DIRECTIONS.WEST);
+    expect(roverHandler.getNextDirection(DIRECTIONS.WEST, COMMANDS.LEFT)).toEqual(DIRECTIONS.NORTH);
+    expect(roverHandler.getNextDirection(DIRECTIONS.EAST, COMMANDS.LEFT)).toEqual(DIRECTIONS.SOUTH);
 });
 
-test('Test for getFutureDirection for Right Command', () => {
+test('Test for getNextDirection for Right Command', () => {
 
     const initialCoordinate = new Coordinate(0, 0);
     const initialDirection = DIRECTIONS.SOUTH;
@@ -79,10 +79,10 @@ test('Test for getFutureDirection for Right Command', () => {
 
     const roverHandler = new RoverHandler(rover, planet);
 
-    expect(roverHandler.getFutureDirection(DIRECTIONS.SOUTH, COMMANDS.RIGHT)).toEqual(DIRECTIONS.EAST);
-    expect(roverHandler.getFutureDirection(DIRECTIONS.NORTH, COMMANDS.RIGHT)).toEqual(DIRECTIONS.EAST);
-    expect(roverHandler.getFutureDirection(DIRECTIONS.WEST, COMMANDS.RIGHT)).toEqual(DIRECTIONS.SOUTH);
-    expect(roverHandler.getFutureDirection(DIRECTIONS.EAST, COMMANDS.RIGHT)).toEqual(DIRECTIONS.NORTH);
+    expect(roverHandler.getNextDirection(DIRECTIONS.SOUTH, COMMANDS.RIGHT)).toEqual(DIRECTIONS.EAST);
+    expect(roverHandler.getNextDirection(DIRECTIONS.NORTH, COMMANDS.RIGHT)).toEqual(DIRECTIONS.EAST);
+    expect(roverHandler.getNextDirection(DIRECTIONS.WEST, COMMANDS.RIGHT)).toEqual(DIRECTIONS.SOUTH);
+    expect(roverHandler.getNextDirection(DIRECTIONS.EAST, COMMANDS.RIGHT)).toEqual(DIRECTIONS.NORTH);
 });
 
 test('Test for Valid Movements south direction', () => {

@@ -49,7 +49,7 @@ class RoverHandler {
         }
     }
 
-    getFutureDirection(currentDir, currentCom) {
+    getNextDirection(currentDir, currentCom) {
         switch (currentCom) {
             case COMMANDS.LEFT: {
                 if (currentDir === DIRECTIONS.EAST) return DIRECTIONS.SOUTH;
@@ -84,16 +84,16 @@ class RoverHandler {
                 break;
             }
             case COMMANDS.LEFT: {
-                const futureDirection = this.getFutureDirection(currentDirection, command);
-                if (this.isValidMovement(futureDirection, x, y, maxCol, maxRow)) {
+                const nextDirection = this.getNextDirection(currentDirection, command);
+                if (this.isValidMovement(nextDirection, x, y, maxCol, maxRow)) {
                     this.#rover.executeCommand(command);
                     return true;
                 } else isNotValidMovement = true;
                 break;
             }
             case COMMANDS.RIGHT: {
-                const futureDirection = this.getFutureDirection(currentDirection, command);
-                if (this.isValidMovement(futureDirection, x, y, maxCol, maxRow)) {
+                const nextDirection = this.getNextDirection(currentDirection, command);
+                if (this.isValidMovement(nextDirection, x, y, maxCol, maxRow)) {
                     this.#rover.executeCommand(command);
                     return true;
                 } else isNotValidMovement = true;
