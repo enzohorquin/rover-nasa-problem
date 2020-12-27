@@ -1,15 +1,6 @@
-const COMMANDS = {
-    FORWARD: 'F',
-    LEFT: 'L',
-    RIGHT: 'R',
-};
+const { getNextDirection, DIRECTIONS, COMMANDS } = require('./utils');
 
-const DIRECTIONS = {
-    NORTH: 'N',
-    EAST: 'E',
-    WEST: 'W',
-    SOUTH: 'S'
-}
+
 class RoverHandler {
     #rover;
     #planet;
@@ -32,13 +23,13 @@ class RoverHandler {
     isValidMovement(currentDirection, x, y, maxCol, maxRow) {
         switch (currentDirection) {
             case DIRECTIONS.NORTH: {
-                return y > 1 && !this.#planet.existsObstacle(x, y - 1);
+                return y >= 1 && !this.#planet.existsObstacle(x, y - 1);
             }
             case DIRECTIONS.SOUTH: {
                 return y < maxRow - 1 && !this.#planet.existsObstacle(x, y + 1);
             }
             case DIRECTIONS.WEST: {
-                return x > 1 && !this.#planet.existsObstacle(x - 1, y);
+                return x >= 1 && !this.#planet.existsObstacle(x - 1, y);
             }
             case DIRECTIONS.EAST: {
                 return x < maxCol - 1 && !this.#planet.existsObstacle(x + 1, y);
@@ -50,23 +41,7 @@ class RoverHandler {
     }
 
     getNextDirection(currentDir, currentCom) {
-        switch (currentCom) {
-            case COMMANDS.LEFT: {
-                if (currentDir === DIRECTIONS.EAST) return DIRECTIONS.SOUTH;
-                else if (currentDir === DIRECTIONS.WEST) return DIRECTIONS.NORTH;
-                else if (currentDir === DIRECTIONS.NORTH) return DIRECTIONS.WEST;
-                else if (currentDir === DIRECTIONS.SOUTH) return DIRECTIONS.WEST;
-                break;
-            }
-            case COMMANDS.RIGHT: {
-                if (currentDir === DIRECTIONS.EAST) return DIRECTIONS.NORTH;
-                else if (currentDir === DIRECTIONS.WEST) return DIRECTIONS.SOUTH;
-                else if (currentDir === DIRECTIONS.NORTH) return DIRECTIONS.EAST;
-                else if (currentDir === DIRECTIONS.SOUTH) return DIRECTIONS.EAST;
-                break;
-            }
-            default: return currentDir;
-        }
+        return getNextDirection(currentDir, currentCom);
     }
     parseCommand(command) {
         const maxCol = this.#planet.getCol();
@@ -113,8 +88,4 @@ class RoverHandler {
     }
 }
 
-module.exports = {
-    RoverHandler,
-    DIRECTIONS,
-    COMMANDS
-}
+module.exports = RoverHandler;

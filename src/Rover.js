@@ -1,5 +1,5 @@
 const Coordinate = require('./Coordinate');
-const { COMMANDS, DIRECTIONS } = require('./RoverHandler');
+const { COMMANDS, DIRECTIONS, getNextDirection } = require('./utils');
 
 class Rover {
     #logs;
@@ -86,12 +86,12 @@ class Rover {
                 break;
             }
             case COMMANDS.LEFT: {
-                this.setDirection(DIRECTIONS.WEST);
+                this.setDirection(getNextDirection(this.#direction, command));
                 this.moveForward();
                 break;
             }
             case COMMANDS.RIGHT: {
-                this.setDirection(DIRECTIONS.EAST);
+                this.setDirection(getNextDirection(this.#direction, command));
                 this.moveForward();
                 break;
             }
@@ -99,5 +99,6 @@ class Rover {
         }
     }
 }
+
 
 module.exports = Rover;

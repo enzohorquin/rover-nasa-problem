@@ -1,7 +1,6 @@
 const Rover = require('../Rover');
 const Coordinate = require('../Coordinate');
-const { DIRECTIONS, COMMANDS } = require('../RoverHandler');
-const { expect } = require('@jest/globals');
+const { DIRECTIONS, COMMANDS } = require('../utils');
 
 const initialCoordinate = new Coordinate(0, 0);
 const rover = new Rover(initialCoordinate, DIRECTIONS.SOUTH);
@@ -84,18 +83,18 @@ test('Test for execute L command', () => {
 
     newRover.executeCommand(COMMANDS.LEFT);
 
-    expect(newRover.getCoordinate()).toEqual({ x: 1, y: 2 });
-    expect(newRover.getLogs()).toEqual([{ x: 2, y: 2 }, { x: 1, y: 2 }]);
-    expect(newRover.getDirection()).toEqual(DIRECTIONS.WEST);
+    expect(newRover.getCoordinate()).toEqual({ x: 3, y: 2 });
+    expect(newRover.getLogs()).toEqual([{ x: 2, y: 2 }, { x: 3, y: 2 }]);
+    expect(newRover.getDirection()).toEqual(DIRECTIONS.EAST);
 });
 
 test('Test for execute R command', () => {
     const coordinate = new Coordinate(2, 2);
     const newRover = new Rover(coordinate, DIRECTIONS.SOUTH);
     newRover.executeCommand(COMMANDS.RIGHT);
-    expect(newRover.getCoordinate()).toEqual({ x: 3, y: 2 });
-    expect(newRover.getLogs()).toEqual([{ x: 2, y: 2 }, { x: 3, y: 2 }]);
-    expect(newRover.getDirection()).toEqual(DIRECTIONS.EAST);
+    expect(newRover.getCoordinate()).toEqual({ x: 1, y: 2 });
+    expect(newRover.getLogs()).toEqual([{ x: 2, y: 2 }, { x: 1, y: 2 }]);
+    expect(newRover.getDirection()).toEqual(DIRECTIONS.WEST);
 });
 
 test('Test for execute Invalid command', () => {

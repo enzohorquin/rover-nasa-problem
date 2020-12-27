@@ -1,6 +1,7 @@
 const Planet = require('../Planet');
 const Rover = require('../Rover');
-const { RoverHandler, DIRECTIONS, COMMANDS } = require('../RoverHandler');
+const RoverHandler = require('../RoverHandler');
+const { DIRECTIONS, COMMANDS } = require('../utils');
 const Coordinate = require('../Coordinate');
 
 const planet = new Planet(4, 4);
@@ -18,7 +19,7 @@ test('Test For Rover Handler 1', () => {
 
     const roverHandler = new RoverHandler(rover, planet);
 
-    const command = 'FFFRF';
+    const command = 'FFFLF';
 
     const result = roverHandler.receiveCommands(command);
     expect(result).toEqual('Rover is now in Destination.');
@@ -34,7 +35,7 @@ test('Test For Rover Handler 2', () => {
 
     const roverHandler = new RoverHandler(rover, planet);
 
-    const command = 'FFFRFL';
+    const command = 'FFFLFL';
 
     const result = roverHandler.receiveCommands(command);
     expect(result).toEqual('Rover could not get to Destination');
@@ -49,7 +50,7 @@ test('Test For Rover Handler 3', () => {
 
     const roverHandler = new RoverHandler(rover, planet);
 
-    const command = 'FFFRFB';
+    const command = 'FFFLFB';
 
     const result = roverHandler.receiveCommands(command);
     expect(result).toEqual('Rover could not get to Destination');
@@ -57,33 +58,30 @@ test('Test For Rover Handler 3', () => {
 
 });
 
-test('Test for getNextDirection for Left Command', () => {
+test('TEst for Rover Handler 4', () => {
+    const planet = new Planet(4, 4);
 
-    const initialCoordinate = new Coordinate(0, 0);
+    planet.setObstacle(0, 0);
+    planet.setObstacle(0, 1);
+    planet.setObstacle(0, 2);
+    planet.setObstacle(0, 3);
+    planet.setObstacle(2, 0);
+    planet.setObstacle(2, 1);
+    planet.setObstacle(2, 2);
+
+    const initialCoordinate = new Coordinate(1, 0);
     const initialDirection = DIRECTIONS.SOUTH;
     const rover = new Rover(initialCoordinate, initialDirection);
 
     const roverHandler = new RoverHandler(rover, planet);
 
-    expect(roverHandler.getNextDirection(DIRECTIONS.SOUTH, COMMANDS.LEFT)).toEqual(DIRECTIONS.WEST);
-    expect(roverHandler.getNextDirection(DIRECTIONS.NORTH, COMMANDS.LEFT)).toEqual(DIRECTIONS.WEST);
-    expect(roverHandler.getNextDirection(DIRECTIONS.WEST, COMMANDS.LEFT)).toEqual(DIRECTIONS.NORTH);
-    expect(roverHandler.getNextDirection(DIRECTIONS.EAST, COMMANDS.LEFT)).toEqual(DIRECTIONS.SOUTH);
+    const command = 'FFFLFLFF';
+
+    const result = roverHandler.receiveCommands(command);
+    expect(result).toEqual('Rover is now in Destination.');
+    expect(rover.getCoordinate()).toEqual({ x: 3, y: 0 });
 });
 
-test('Test for getNextDirection for Right Command', () => {
-
-    const initialCoordinate = new Coordinate(0, 0);
-    const initialDirection = DIRECTIONS.SOUTH;
-    const rover = new Rover(initialCoordinate, initialDirection);
-
-    const roverHandler = new RoverHandler(rover, planet);
-
-    expect(roverHandler.getNextDirection(DIRECTIONS.SOUTH, COMMANDS.RIGHT)).toEqual(DIRECTIONS.EAST);
-    expect(roverHandler.getNextDirection(DIRECTIONS.NORTH, COMMANDS.RIGHT)).toEqual(DIRECTIONS.EAST);
-    expect(roverHandler.getNextDirection(DIRECTIONS.WEST, COMMANDS.RIGHT)).toEqual(DIRECTIONS.SOUTH);
-    expect(roverHandler.getNextDirection(DIRECTIONS.EAST, COMMANDS.RIGHT)).toEqual(DIRECTIONS.NORTH);
-});
 
 test('Test for Valid Movements south direction', () => {
     const initialCoordinate = new Coordinate(0, 0);

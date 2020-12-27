@@ -67,3 +67,7 @@ const result = roverHandler.receiveCommands(command);
 console.log(result);
 console.log(`Rover`, rover.getCoordinate());
 ```
+Once the file is configured. 
+```bash
+node filename.js
+```
