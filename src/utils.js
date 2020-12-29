@@ -13,18 +13,42 @@ const DIRECTIONS = {
 function getNextDirection(currentDir, currentCom) {
     switch (currentCom) {
         case COMMANDS.LEFT: {
-            if (currentDir === DIRECTIONS.EAST) return DIRECTIONS.NORTH;
-            else if (currentDir === DIRECTIONS.WEST) return DIRECTIONS.SOUTH;
-            else if (currentDir === DIRECTIONS.NORTH) return DIRECTIONS.WEST;
-            else if (currentDir === DIRECTIONS.SOUTH) return DIRECTIONS.EAST;
-            return DIRECTIONS.NORTH; // In case of wrong Direction
+            switch (currentDir) {
+                case DIRECTIONS.EAST: {
+                    return DIRECTIONS.NORTH;
+                }
+                case DIRECTIONS.WEST: {
+                    return DIRECTIONS.SOUTH;
+                }
+                case DIRECTIONS.NORTH: {
+                    return DIRECTIONS.WEST;
+                }
+                case DIRECTIONS.SOUTH: {
+                    return DIRECTIONS.EAST;
+                }
+                default: {
+                    return DIRECTIONS.NORTH;
+                }
+            }
         }
         case COMMANDS.RIGHT: {
-            if (currentDir === DIRECTIONS.EAST) return DIRECTIONS.SOUTH;
-            else if (currentDir === DIRECTIONS.WEST) return DIRECTIONS.NORTH;
-            else if (currentDir === DIRECTIONS.NORTH) return DIRECTIONS.EAST;
-            else if (currentDir === DIRECTIONS.SOUTH) return DIRECTIONS.WEST;
-            return DIRECTIONS.NORTH; // In case of wrong Direction
+            switch (currentDir) {
+                case DIRECTIONS.EAST: {
+                    return DIRECTIONS.SOUTH;
+                }
+                case DIRECTIONS.WEST: {
+                    return DIRECTIONS.NORTH;
+                }
+                case DIRECTIONS.NORTH: {
+                    return DIRECTIONS.EAST;
+                }
+                case DIRECTIONS.SOUTH: {
+                    return DIRECTIONS.WEST;
+                }
+                default: {
+                    return DIRECTIONS.NORTH;
+                }
+            }
         }
         default: return currentDir;
     }
